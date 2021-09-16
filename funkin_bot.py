@@ -3,6 +3,7 @@ import numpy as np
 from mss import mss
 import cv2
 import pyautogui
+import pydirectinput
 
 #STEP ONE: Run program and open a song in the game. 
 #STEP TWO: Click on the terminal and hover over the center of the specified arrow.
@@ -10,6 +11,7 @@ import pyautogui
 #If hits are late, then run program again and choose a lower point of the arrow.
 
 pyautogui.PAUSE = 0
+pydirectinput.PAUSE = 0
 
 LEFT_COLOR = [153, 75, 194]
 DOWN_COLOR = [255, 255, 0]
@@ -63,10 +65,10 @@ class Arrow():
         input('Hit enter to confirm position.\n')
         return pyautogui.position()
 
-left_arrow = Arrow((0,0),LEFT_COLOR,'A',LEFT_HOLD)
-down_arrow = Arrow((0,0),DOWN_COLOR,'S',DOWN_HOLD)
-up_arrow = Arrow((0,0),UP_COLOR,'W', UP_HOLD)
-right_arrow = Arrow((0,0),RIGHT_COLOR,'D', RIGHT_HOLD)
+left_arrow = Arrow((0,0),LEFT_COLOR,'a',LEFT_HOLD)
+down_arrow = Arrow((0,0),DOWN_COLOR,'s',DOWN_HOLD)
+up_arrow = Arrow((0,0),UP_COLOR,'w', UP_HOLD)
+right_arrow = Arrow((0,0),RIGHT_COLOR,'d', RIGHT_HOLD)
 
 arrows = [left_arrow, down_arrow, up_arrow, right_arrow]
 
