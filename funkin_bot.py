@@ -71,8 +71,9 @@ class Arrow():
         return None
 
     def get_abs_pos(self):
-        print(f'Place mouse on the arrow for key "{self.key}".')
-        input('Hit enter to confirm position.\n')
+        print(f'Place cursor on the arrow for key "{self.key}".')
+        print('Press "shift" to confirm position.')
+        keyboard.wait("shift")
         return pyautogui.position()
 
 left_arrow = Arrow((0,0),LEFT_COLOR,'a',LEFT_HOLD)
