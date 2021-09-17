@@ -4,6 +4,9 @@ from mss import mss
 import cv2
 import pyautogui
 import pydirectinput
+import keyboard
+import json
+import os
 
 #STEP ONE: Run program and open a song in the game. 
 #STEP TWO: Click on the terminal and hover over the center of the specified arrow.
@@ -13,17 +16,24 @@ import pydirectinput
 pyautogui.PAUSE = 0
 pydirectinput.PAUSE = 0
 
-LEFT_COLOR = [153, 75, 194]
-DOWN_COLOR = [255, 255, 0]
-UP_COLOR = [5, 250, 18]
-RIGHT_COLOR = [63, 57, 249]
+filename = input('Enter configuration name: ')
+path = os.path.join('configs',filename+'.json')
+with open(path) as f:
+    settings = json.load(f)
+
+print(settings)
+
+LEFT_COLOR = settings['left_color']
+DOWN_COLOR = settings['down_color']
+UP_COLOR = settings['up_color']
+RIGHT_COLOR = settings['right_color']
 GRAY_COLOR = [173, 163, 135]
 WHITE_COLOR = [255, 255, 255]
 
-LEFT_HOLD = [255, 218, 255]
-DOWN_HOLD = [255, 255, 142]
-UP_HOLD = [177, 255, 148]
-RIGHT_HOLD = [220, 204, 255]
+LEFT_HOLD = settings['left_hold']
+DOWN_HOLD = settings['down_hold']
+UP_HOLD = settings['up_hold']
+RIGHT_HOLD = settings['right_hold']
 
 class Arrow():
     '''Class to track data for each arrow and react accordingly.
