@@ -30,7 +30,6 @@ class Arrow():
         self.color = color
         self.key = key
         self.was_hit = True
-        self.streak = 0
         self.hold_color = hold_color
 
     def update_arrow_state(self, img):
@@ -44,8 +43,8 @@ class Arrow():
 
         elif self.was_hit:
             self.was_hit = False
-            pyautogui.keyUp(self.key)
-            pyautogui.keyDown(self.key)
+            pydirectinput.keyUp(self.key)
+            pydirectinput.keyDown(self.key)
             print(f'Pressed "{self.key}" key')
 
         return None
@@ -73,7 +72,6 @@ def make_monitor(abs_positions):
     box_height = int(box_width*0.24)
     box_left = int(abs_positions[0][0]-raw_width*0.15)
     box_top = int(abs_positions[0][1]-box_height*11/16)
-    offset_y = int(box_height*0.4)
 
     monitor_box = {'top':box_top, 'left': box_left,
     'width': box_width, 'height':box_height}
@@ -89,54 +87,55 @@ def make_monitor(abs_positions):
 
     return monitor_box, rel_positions
 
-filename = input('Enter configuration name: ')
-path = os.path.join('configs',filename+'.json')
-with open(path) as f:
-    settings = json.load(f)
+if __name__ == '__main__':
+    filename = input('Enter configuration name: ')
+    path = os.path.join('configs',filename+'.json')
+    with open(path) as f:
+        settings = json.load(f)
 
-LEFT_COLOR = settings['left_color']
-DOWN_COLOR = settings['down_color']
-UP_COLOR = settings['up_color']
-RIGHT_COLOR = settings['right_color']
+    LEFT_COLOR = settings['left_color']
+    DOWN_COLOR = settings['down_color']
+    UP_COLOR = settings['up_color']
+    RIGHT_COLOR = settings['right_color']
 
-LEFT_HOLD = settings['left_hold']
-DOWN_HOLD = settings['down_hold']
-UP_HOLD = settings['up_hold']
-RIGHT_HOLD = settings['right_hold']
+    LEFT_HOLD = settings['left_hold']
+    DOWN_HOLD = settings['down_hold']
+    UP_HOLD = settings['up_hold']
+    RIGHT_HOLD = settings['right_hold']
 
-left_arrow = Arrow((0,0),LEFT_COLOR,'a',LEFT_HOLD)
-down_arrow = Arrow((0,0),DOWN_COLOR,'s',DOWN_HOLD)
-up_arrow = Arrow((0,0),UP_COLOR,'w', UP_HOLD)
-right_arrow = Arrow((0,0),RIGHT_COLOR,'d', RIGHT_HOLD)
+    left_arrow = Arrow((0,0),LEFT_COLOR,'a',LEFT_HOLD)
+    down_arrow = Arrow((0,0),DOWN_COLOR,'s',DOWN_HOLD)
+    up_arrow = Arrow((0,0),UP_COLOR,'w', UP_HOLD)
+    right_arrow = Arrow((0,0),RIGHT_COLOR,'d', RIGHT_HOLD)
 
-arrows = [left_arrow, down_arrow, up_arrow, right_arrow]
+    arrows = [left_arrow, down_arrow, up_arrow, right_arrow]
 
-absolute_positions = []
-for arrow in arrows:
-    arrow.get_abs_pos()
-    absolute_positions.append(arrow.abs_pos)
-print('Arrow positions defined.')
-
-arrow_box, rel_positions = make_monitor(absolute_positions)
-offset_y = int(arrow_box['height']*0.4)
-
-for arrow, rel_position in zip(arrows,rel_positions):
-    arrow.update_position(rel_position)
-
-while True:
-    with mss() as sct:
-        img = np.array(sct.grab(arrow_box))
-
+    absolute_positions = []
     for arrow in arrows:
-        arrow.update_arrow_state(img)
+        arrow.get_abs_pos()
+        absolute_positions.append(arrow.abs_pos)
+    print('Arrow positions defined.')
 
-    for position in rel_positions:
-        cv2.circle(img, position, 4, [255,0,0], -1)
-        cv2.circle(img, (position[0],position[1]-offset_y), 4, [255,0,0], -1)
+    arrow_box, rel_positions = make_monitor(absolute_positions)
+    offset_y = int(arrow_box['height']*0.4)
 
-    cv2.imshow('Arrow_Box',img)
+    for arrow, rel_position in zip(arrows,rel_positions):
+        arrow.update_position(rel_position)
 
-    if cv2.waitKey(1) & 0xff == ord("q"):
-        break
+    while True:
+        with mss() as sct:
+            img = np.array(sct.grab(arrow_box))
 
-cv2.destroyAllWindows
+        for arrow in arrows:
+            arrow.update_arrow_state(img)
+
+        for position in rel_positions:
+            cv2.circle(img, position, 4, [255,0,0], -1)
+            cv2.circle(img, (position[0],position[1]-offset_y), 4, [255,0,0], -1)
+
+        cv2.imshow('Arrow_Box',img)
+
+        if cv2.waitKey(1) & 0xff == ord("q"):
+            break
+
+    cv2.destroyAllWindows
