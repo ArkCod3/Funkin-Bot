@@ -2,16 +2,13 @@
 <img src="images/funkin_gif.gif" alt="gif of bot playing a level"/>
 
 ## Description
----
 Funkin' Bot is a python script that plays any Friday Night Funkin' level in real time using a series of image captures.
 
 ## Strengths
----
 * Ability to play most FNF levels and mods
 * Supports any screen resolution
 * Works on browser and installed versions of the game
 ## Limitations
----
 * Struggle with very fast, consecutive notes  
   
   <img src="images/consecutive_notes.png" alt="image of arrow box position markers" width="300"/>
@@ -20,7 +17,6 @@ Funkin' Bot is a python script that plays any Friday Night Funkin' level in real
   <img src="images/idle_notes.png" alt="image of arrow box position markers" width="300"/>
 
 ## Usage
----
 1. Run the game.
 2. Run funkin_bot.py and enter the configuration you want in the terminal. Program comes with two configurations: **vanilla** and **netmods**.
 3. Hover your cursor over each arrow's corresponding arrow position, starting with the leftmost arrow. Adequate positions look like this:
@@ -32,7 +28,6 @@ Funkin' Bot is a python script that plays any Friday Night Funkin' level in real
 * If the bot's inputs are delayed, you should select a lower point along the arrow, and viceversa if they are early.
 
 ## Creating Configurations
----
 1. Start level and pause it. Make sure no notes are near the arrow box.
 2. Run make_config.py.
 3. Hover your cursor over each arrow's positition, similar to funkin_bot.py.
