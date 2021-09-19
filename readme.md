@@ -15,10 +15,17 @@ Funkin' Bot is a python script that plays any Friday Night Funkin' level in real
 * Will not work with mods that have the same idle and note colors
   
   <img src="images/idle_notes.png" alt="image of arrow box position markers" width="300"/>
-
+## Requirements
+* Windows
+* Python3
+  * Program tested on python 3.7
+## Installation
+1. Download and extract the latest release to your chosen directory.
+2. Open the directory inside the Windows Command Prompt. Performance will be more reliable if you create a Python 3.7 virtual environment.
+3. Run **pip install -r requirements.txt** on the command-line.
 ## Usage
 1. Run the game.
-2. Run funkin_bot.py and enter the configuration you want in the terminal. Program comes with two configurations: **vanilla** and **netmods**.
+2. Run **funkin_bot.py** and enter the configuration you want in the terminal. Program comes with two configurations: **vanilla** and **netmods**.
 3. Hover your cursor over each arrow's corresponding arrow position, starting with the leftmost arrow. Adequate positions look like this:
 
    <img src="images/arrow_box.png" alt="image of arrow box position markers" width="200"/>
@@ -29,7 +36,7 @@ Funkin' Bot is a python script that plays any Friday Night Funkin' level in real
 
 ## Creating Configurations
 1. Start level and pause it. Make sure no notes are near the arrow box.
-2. Run make_config.py.
+2. Run **make_config.py**.
 3. Hover your cursor over each arrow's positition, similar to funkin_bot.py.
 4. Hit **shift** to confirm each arrow. After the four arrows are defined, unpause the game and press **shift** once more.
 5. Program will run until all arrow colors can be extracted.
