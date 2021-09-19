@@ -114,7 +114,8 @@ if __name__ == '__main__':
     for arrow in arrows:
         arrow.get_abs_pos()
         absolute_positions.append(arrow.abs_pos)
-    print('Arrow positions defined.')
+    pyautogui.alert('Arrow positions defined. \
+    click "OK" to start bot.')
 
     arrow_box, rel_positions = make_monitor(absolute_positions)
     offset_y = int(arrow_box['height']*0.4)
