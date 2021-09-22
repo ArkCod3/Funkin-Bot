@@ -1,5 +1,7 @@
 # Funkin' Bot
 <img src="images/funkin_gif.gif" alt="gif of bot playing a level"/>
+For video tutorial click <a href="https://youtu.be/o1Z0mwdP1qE
+">here.</a>
 
 ## Description
 Funkin' Bot is a python script that plays any Friday Night Funkin' level in real time using a series of image captures.
